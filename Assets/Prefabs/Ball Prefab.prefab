@@ -129,3 +129,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   minSwipeRecognition: 500
+  hitEffectParticle: {fileID: 0}
