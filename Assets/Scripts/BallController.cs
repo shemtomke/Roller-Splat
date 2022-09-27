@@ -52,12 +52,15 @@ public class BallController : MonoBehaviour
             {
                 ground.ChangeColor(solveColor);
                 hitSound.Play();
+                
+                ParticleSystem.MainModule main = hitEffectParticle.main;
+                main.startColor = solveColor; // <- or whatever color you want to assign
+
                 hitEffectParticle.Play();
+                Debug.Log(hitEffectParticle.isPlaying);
             }
-            else
-            {
-                //hitEffectParticle.Stop();
-            }
+
+            
             i++;
         }
 
