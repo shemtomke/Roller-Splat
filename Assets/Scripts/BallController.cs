@@ -20,12 +20,19 @@ public class BallController : MonoBehaviour
     private Color solveColor;
 
     public ParticleSystem hitEffectParticle;
+    public AudioSource hitSound;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         solveColor = Random.ColorHSV(0.5f, 1);
         GetComponent<MeshRenderer>().material.color = solveColor;
+
+        if(hitEffectParticle == null)
+        {
+            hitEffectParticle = GameObject.Find("hitEffect").GetComponent<ParticleSystem>();
+        }
+        
     }
 
     private void FixedUpdate()
@@ -44,11 +51,12 @@ public class BallController : MonoBehaviour
             if(ground && !ground.isColored)
             {
                 ground.ChangeColor(solveColor);
+                hitSound.Play();
                 hitEffectParticle.Play();
             }
             else
             {
-                hitEffectParticle.Stop();
+                //hitEffectParticle.Stop();
             }
             i++;
         }

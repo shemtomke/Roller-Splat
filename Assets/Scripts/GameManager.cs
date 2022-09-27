@@ -7,18 +7,19 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
 
+    AudioSource completeLevelSound;
+    AudioSource gameMusic;
+
     private GroundPiece[] allGroundPieces;
 
     // Start is called before the first frame update
     void Start()
     {
-        SetupNewLevel();
-    }
+        gameMusic = GameObject.Find("Level Music").GetComponent<AudioSource>();
+        completeLevelSound = GameObject.Find("Complete Level").GetComponent<AudioSource>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SetupNewLevel();
+        gameMusic.Play();
     }
 
     private void SetupNewLevel()
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         if(isFinished)
         {
             NextLevel();
+            completeLevelSound.Play();
         }
     }
 
